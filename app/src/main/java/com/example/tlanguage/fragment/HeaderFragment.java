@@ -30,7 +30,7 @@ public class HeaderFragment extends Fragment {
     private HeaderFragmentViewModel mHeaderFragmentViewModel;
 
     public HeaderFragment() {
-       mHeaderFragmentViewModel = new HeaderFragmentViewModel();
+       mHeaderFragmentViewModel = new HeaderFragmentViewModel(getContext());
     }
 
     /**

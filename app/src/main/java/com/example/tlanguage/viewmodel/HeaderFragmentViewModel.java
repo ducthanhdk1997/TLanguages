@@ -1,32 +1,55 @@
 package com.example.tlanguage.viewmodel;
 
-import android.util.Log;
+import android.content.Context;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.PopupMenu;
+import android.widget.Toast;
 
 import androidx.databinding.Bindable;
 
+import com.example.tlanguage.AppManager.ApplicationManager;
 import com.example.tlanguage.R;
 
 public class HeaderFragmentViewModel extends AbstractViewModel {
-    private String mContent;
+    private String mTitle;
+    private Context mContext;
 
-    public HeaderFragmentViewModel() {
-
+    public HeaderFragmentViewModel(Context context) {
+        this.mContext = context;
     }
 
 
     @Bindable
     public String getContent() {
-        return mContent;
+        return mTitle;
     }
 
     public void setContent(String content) {
-        this.mContent = content;
+        this.mTitle = content;
         notifyChange();
     }
 
-    public void onItemsClick(View view) {
 
+    public void onItemsClick(View view) {
+        switch (view.getId()) {
+            case R.id.btnHeaderAdd:
+                break;
+            case R.id.btnHeaderMore:
+                if (mContext == null) {
+                    mContext = ApplicationManager.getInstance().getApplicationContent();
+                }
+                PopupMenu popupMenu = new PopupMenu(mContext,view);
+                popupMenu.getMenuInflater().inflate(R.menu.header_more_menu,popupMenu.getMenu());
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem item) {
+                        Toast.makeText(mContext,"You clicked" + item.getTitle(), Toast.LENGTH_SHORT).show();
+                        return false;
+                    }
+                });
+                popupMenu.show();
+        }
     }
 
 

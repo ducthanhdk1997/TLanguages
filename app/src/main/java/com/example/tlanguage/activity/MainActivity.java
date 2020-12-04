@@ -8,20 +8,24 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 
+import com.example.tlanguage.AppManager.ApplicationManager;
 import com.example.tlanguage.fragment.HeaderFragment;
 import com.example.tlanguage.R;
 import com.example.tlanguage.fragment.LanguageFragment;
 
 public class MainActivity extends AppCompatActivity {
-    FrameLayout mHeaderLayout, mContentLayout;
-    Fragment mHeaderFragment, mContentFragment;
-    FragmentManager mFragmentManager;
+    private FrameLayout mHeaderLayout, mContentLayout;
+    private Fragment mHeaderFragment, mContentFragment;
+    private FragmentManager mFragmentManager;
+    private ApplicationManager mApplicationManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        mApplicationManager = ApplicationManager.getInstance();
+        mApplicationManager.setApplicationContext(getApplicationContext());
         inti();
     }
 
