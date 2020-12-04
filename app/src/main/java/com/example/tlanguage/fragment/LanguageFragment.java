@@ -1,6 +1,7 @@
 package com.example.tlanguage.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tlanguage.R;
 import com.example.tlanguage.action.ItemListener;
+import com.example.tlanguage.activity.GroupLanguageActivity;
+import com.example.tlanguage.activity.MainActivity;
 import com.example.tlanguage.adapter.MyLanguageRecyclerViewAdapter;
+import com.example.tlanguage.app_constant.RequestCodeConstant;
 import com.example.tlanguage.model.Language;
 
 import java.util.ArrayList;
@@ -26,6 +30,7 @@ public class LanguageFragment extends Fragment implements ItemListener {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private MyLanguageRecyclerViewAdapter mAdapter;
+    private List<Language> languages;
 
     public LanguageFragment() {
     }
@@ -43,8 +48,7 @@ public class LanguageFragment extends Fragment implements ItemListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        List<Language> languages = new ArrayList<>();
+        languages = new ArrayList<>();
         Language language = new Language(1,"English");
         Language language1 = new Language(1,"Japan");
         Language language2 = new Language(1,"Korea");
@@ -76,7 +80,28 @@ public class LanguageFragment extends Fragment implements ItemListener {
 
     @Override
     public void itemClick(View view, int position) {
-        Toast.makeText(getContext(), "Position clicked: " + position,Toast.LENGTH_SHORT).show();
+        Language language = languages.get(position);
+        Intent intent = new Intent(getContext(), GroupLanguageActivity.class);
+        Bundle bundle = new Bundle();
+
+        switch (language.getName()) {
+            case "English":
+                bundle.putString(RequestCodeConstant.REQUEST_TITLE, RequestCodeConstant.REQUEST_NAME_GROUP_ENGLISH);
+                break;
+            case "Korea":
+                bundle.putString(RequestCodeConstant.REQUEST_TITLE, RequestCodeConstant.REQUEST_NAME_GROUP_KOREA);
+                break;
+            case "China":
+                bundle.putString(RequestCodeConstant.REQUEST_TITLE, RequestCodeConstant.REQUEST_NAME_GROUP_CHINA);
+                break;
+            case "Japan":
+                bundle.putString(RequestCodeConstant.REQUEST_TITLE, RequestCodeConstant.REQUEST_NAME_GROUP_JAPAN);
+                break;
+            default:
+                break;
+        }
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
     @Override

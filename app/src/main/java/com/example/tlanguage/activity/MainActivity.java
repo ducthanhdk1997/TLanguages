@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.widget.FrameLayout;
 
 import com.example.tlanguage.AppManager.ApplicationManager;
+import com.example.tlanguage.app_constant.RequestCodeConstant;
 import com.example.tlanguage.fragment.HeaderFragment;
 import com.example.tlanguage.R;
 import com.example.tlanguage.fragment.LanguageFragment;
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         mHeaderLayout = findViewById(R.id.headerLayout);
         mContentLayout = findViewById(R.id.contentLayout);
 
-        mHeaderFragment = HeaderFragment.newInstance("TEnglish");
+        mHeaderFragment = HeaderFragment.newInstance(RequestCodeConstant.REQUEST_APP_NAME);
         mFragmentManager = getSupportFragmentManager();
 
         mContentFragment = LanguageFragment.newInstance(1);
