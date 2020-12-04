@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/item_padding"
+    android:layout_marginTop="@dimen/item_margin_top"
+    android:background="@drawable/border_group_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvLanguage"
+        android:padding="@dimen/item_padding"
+        android:textSize="@dimen/item_text_title_size"
+        android:layout_width="match_parent"
+        android:textStyle="bold"
+        android:text="English"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceListItem" />
+
+    <TextView
+        android:id="@+id/tvCount"
+        android:padding="@dimen/item_padding"
+        android:textSize="@dimen/item_text_title_content"
+        android:text="150 word"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?attr/textAppearanceListItem" />
+</LinearLayout>
