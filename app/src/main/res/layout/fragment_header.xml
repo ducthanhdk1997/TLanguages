@@ -37,24 +37,11 @@
             android:text="Test"
             android:padding="2dp"
             app:layout_constraintTop_toBottomOf="@+id/guiBottom"
-            app:layout_constraintEnd_toStartOf="@+id/btnHeaderMore"
+            app:layout_constraintEnd_toEndOf="parent"
             android:src="@drawable/ic_baseline_add_32"
             android:background="@color/background"
             android:tint="@color/item_tint"
             android:importantForAutofill="auto"
-            android:onClick="@{(view) -> viewModel.onItemsClick(view)}"
-            android:layout_height="wrap_content"/>
-        <ImageButton
-            app:layout_constraintTop_toBottomOf="@+id/guiBottom"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="wrap_content"
-            android:id="@+id/btnHeaderMore"
-            android:importantForAutofill="auto"
-            android:text="Test"
-            android:background="@color/background"
-            android:src="@drawable/ic_baseline_more_vert_32"
-            android:tint="@color/item_tint"
-            android:padding="2dp"
             android:onClick="@{(view) -> viewModel.onItemsClick(view)}"
             android:layout_height="wrap_content"/>
 

@@ -2,37 +2,31 @@ package com.example.tlanguage.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tlanguage.R;
-import com.example.tlanguage.fragment.dummy.DummyContent;
+import com.example.tlanguage.action.ItemListener;
+import com.example.tlanguage.adapter.MyLanguageRecyclerViewAdapter;
 import com.example.tlanguage.model.Language;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A fragment representing a list of Items.
- */
-public class LanguageFragment extends Fragment {
+public class LanguageFragment extends Fragment implements ItemListener {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
+    private MyLanguageRecyclerViewAdapter mAdapter;
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
     public LanguageFragment() {
     }
 
@@ -50,9 +44,17 @@ public class LanguageFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        List<Language> languages = new ArrayList<>();
+        Language language = new Language(1,"English");
+        Language language1 = new Language(1,"Japan");
+        Language language2 = new Language(1,"Korea");
+        languages.add(language);
+        languages.add(language1);
+        languages.add(language2);
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
+        mAdapter = new MyLanguageRecyclerViewAdapter(languages,this);
     }
 
     @Override
@@ -62,20 +64,23 @@ public class LanguageFragment extends Fragment {
 
         // Set the adapter
         if (view instanceof RecyclerView) {
-            List<Language> languages = new ArrayList<>();
-            Language language = new Language(1,"English");
-            Language language1 = new Language(1,"Japan");
-            Language language2 = new Language(1,"Korea");
-            languages.add(language);
-            languages.add(language1);
-            languages.add(language2);
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             }
-            recyclerView.setAdapter(new MyLanguageRecyclerViewAdapter(languages));
+            recyclerView.setAdapter(mAdapter);
         }
         return view;
+    }
+
+    @Override
+    public void itemClick(View view, int position) {
+        Toast.makeText(getContext(), "Position clicked: " + position,Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void itemLongClick(View view, int position) {
+        Toast.makeText(getContext(), "Position longClicked: " + position,Toast.LENGTH_SHORT).show();
     }
 }

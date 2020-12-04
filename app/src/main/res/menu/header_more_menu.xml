@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <item
-        android:title="delete"
+        android:title="English"
         app:showAsAction="always"
-        android:id="@+id/pmnDelete"/>
+        android:id="@+id/pmnEnglish"/>
+    <item
+        android:title="Korea"
+        app:showAsAction="always"
+        android:id="@+id/pmnKorea"/>
+    <item
+        android:title="Japan"
+        app:showAsAction="always"
+        android:id="@+id/pmnJapan"/>
+    <item
+        android:title="China"
+        app:showAsAction="always"
+        android:id="@+id/pmnChina"/>
 </menu>

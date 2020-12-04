@@ -1,4 +1,4 @@
-package com.example.tlanguage.fragment;
+package com.example.tlanguage.adapter;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -8,22 +8,25 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.tlanguage.R;
-import com.example.tlanguage.fragment.dummy.DummyContent.DummyItem;
+import com.example.tlanguage.action.ItemListener;
 import com.example.tlanguage.model.Language;
 
 import java.util.List;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem}.
- * TODO: Replace the implementation with code for your data type.
- */
 public class MyLanguageRecyclerViewAdapter extends RecyclerView.Adapter<MyLanguageRecyclerViewAdapter.ViewHolder> {
 
     private final List<Language> mListLanguages;
+    private ItemListener mListener;
 
-    public MyLanguageRecyclerViewAdapter(List<Language> items) {
+    public MyLanguageRecyclerViewAdapter(List<Language> items, ItemListener listener) {
         mListLanguages = items;
+        if (listener instanceof ItemListener) {
+            this.mListener = listener;
+        } else {
+            throw new RuntimeException(listener.toString() + "must implement LanguageItemListener");
+        }
     }
+
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -43,15 +46,30 @@ public class MyLanguageRecyclerViewAdapter extends RecyclerView.Adapter<MyLangua
         return mListLanguages.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener, View.OnClickListener{
         public final View mView;
         public final TextView tvLanguage, tvCount;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
+            mView.setOnClickListener(this);
+            mView.setOnLongClickListener(this);
             tvLanguage = (TextView) view.findViewById(R.id.tvLanguage);
             tvCount = (TextView) view.findViewById(R.id.tvCount);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition();
+            mListener.itemClick(v, position);
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+            int position = getAdapterPosition();
+            mListener.itemLongClick(v, position);
+            return false;
         }
     }
 }
