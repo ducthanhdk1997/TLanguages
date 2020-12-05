@@ -8,7 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 
-import com.example.tlanguage.AppManager.ApplicationManager;
+import com.example.tlanguage.app_manager.ApplicationManager;
 import com.example.tlanguage.app_constant.RequestCodeConstant;
 import com.example.tlanguage.fragment.HeaderFragment;
 import com.example.tlanguage.R;

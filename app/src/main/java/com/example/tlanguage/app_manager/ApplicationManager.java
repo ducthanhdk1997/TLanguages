@@ -1,4 +1,4 @@
-package com.example.tlanguage.AppManager;
+package com.example.tlanguage.app_manager;
 
 import android.content.Context;
 

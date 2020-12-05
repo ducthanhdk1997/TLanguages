@@ -55,8 +55,8 @@ public class MyLanguageRecyclerViewAdapter extends RecyclerView.Adapter<MyLangua
             mView = view;
             mView.setOnClickListener(this);
             mView.setOnLongClickListener(this);
-            tvLanguage = (TextView) view.findViewById(R.id.tvLanguage);
-            tvCount = (TextView) view.findViewById(R.id.tvCount);
+            tvLanguage = view.findViewById(R.id.tvLanguage);
+            tvCount = view.findViewById(R.id.tvCount);
         }
 
         @Override

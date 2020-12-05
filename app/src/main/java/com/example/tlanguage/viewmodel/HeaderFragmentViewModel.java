@@ -10,7 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.RequiresApi;
 import androidx.databinding.Bindable;
 
-import com.example.tlanguage.AppManager.ApplicationManager;
+import com.example.tlanguage.app_manager.ApplicationManager;
 import com.example.tlanguage.R;
 
 public class HeaderFragmentViewModel extends AbstractViewModel {

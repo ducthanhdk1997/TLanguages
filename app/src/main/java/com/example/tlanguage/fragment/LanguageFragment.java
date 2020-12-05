@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,13 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.tlanguage.R;
 import com.example.tlanguage.action.ItemListener;
 import com.example.tlanguage.activity.GroupLanguageActivity;
-import com.example.tlanguage.activity.MainActivity;
 import com.example.tlanguage.adapter.MyLanguageRecyclerViewAdapter;
 import com.example.tlanguage.app_constant.RequestCodeConstant;
+import com.example.tlanguage.databinding.FragmentItemListBinding;
 import com.example.tlanguage.model.Language;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.tlanguage.viewmodel.LanguageFragmentViewModel;
 
 public class LanguageFragment extends Fragment implements ItemListener {
 
@@ -30,7 +29,8 @@ public class LanguageFragment extends Fragment implements ItemListener {
     // TODO: Customize parameters
     private int mColumnCount = 1;
     private MyLanguageRecyclerViewAdapter mAdapter;
-    private List<Language> languages;
+    private LanguageFragmentViewModel mLanguageFragmentViewModel;
+
 
     public LanguageFragment() {
     }
@@ -48,24 +48,21 @@ public class LanguageFragment extends Fragment implements ItemListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        languages = new ArrayList<>();
-        Language language = new Language(1,"English");
-        Language language1 = new Language(1,"Japan");
-        Language language2 = new Language(1,"Korea");
-        languages.add(language);
-        languages.add(language1);
-        languages.add(language2);
+
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
-        mAdapter = new MyLanguageRecyclerViewAdapter(languages,this);
+        mLanguageFragmentViewModel = new LanguageFragmentViewModel();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_item_list, container, false);
+        FragmentItemListBinding fragmentItemListBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_item_list,container,false);
+        fragmentItemListBinding.setViewModel(mLanguageFragmentViewModel);
+        View view = fragmentItemListBinding.getRoot();
 
+        mAdapter = new MyLanguageRecyclerViewAdapter(mLanguageFragmentViewModel.getLanguages(),this);
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
@@ -80,7 +77,7 @@ public class LanguageFragment extends Fragment implements ItemListener {
 
     @Override
     public void itemClick(View view, int position) {
-        Language language = languages.get(position);
+        Language language = mLanguageFragmentViewModel.getLanguageWithPosition(position);
         Intent intent = new Intent(getContext(), GroupLanguageActivity.class);
         Bundle bundle = new Bundle();
 
