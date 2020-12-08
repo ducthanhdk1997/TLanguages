@@ -1,33 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="8"
-    tools:context=".activity.GroupLanguageActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.tlanguage.viewmodel.GroupLanguageViewModel" />
+    </data>
 
-    <FrameLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:id="@+id/group_language_headerLayout"
-        android:background="@color/background"
-        android:layout_weight="2"
-        android:padding="5dp"
-        android:layout_height="0dp"/>
+        android:layout_height="match_parent"
+        tools:context=".activity.GroupLanguageActivity">
 
-    <FrameLayout
-        android:padding="5dp"
-        android:layout_width="match_parent"
-        android:id="@+id/group_language_contentLayout"
-        android:layout_weight="5"
-        android:background="@color/background"
-        android:layout_height="0dp"/>
-    <FrameLayout
-        android:padding="5dp"
-        android:layout_width="match_parent"
-        android:id="@+id/group_language_footerLayout"
-        android:layout_weight="1"
-        android:background="@color/background"
-        android:layout_height="0dp"/>
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:loadHeight="@{viewModel.appbarHeight}"
+            app:expanded="true"
+            android:id="@+id/group_app_bar_layout"
+            android:background="@color/background">
 
-</LinearLayout>
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
+                android:id="@+id/group_collpasing_toolbar_layout"
+                app:title="@{viewModel.appBarTitle}"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:id="@+id/group_toolbar"
+                    android:layout_height="50dp"/>
+
+                <ImageButton
+                    android:layout_margin="5dp"
+                    android:layout_width="wrap_content"
+                    android:src="@drawable/ic_baseline_add_32"
+                    app:layout_collapseMode="pin"
+                    android:id="@+id/btnGroupHeaderAdd"
+                    android:onClick="@{(view) -> viewModel.onClick(view)}"
+                    android:background="@color/background"
+                    android:layout_gravity="bottom|end"
+                    android:layout_height="wrap_content">
+                </ImageButton>
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:id="@+id/groupContent"
+            android:orientation="vertical"
+            android:layout_marginBottom="45dp"
+            android:background="@color/background"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
+            android:layout_height="wrap_content"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:id="@+id/group_footer"
+            android:padding="0dp"
+            android:layout_gravity="bottom"
+            android:background="@color/background"
+            android:paddingBottom="2dp"
+            android:layout_height="wrap_content">
+        </FrameLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

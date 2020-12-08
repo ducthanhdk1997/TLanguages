@@ -14,10 +14,9 @@
             android:label="@string/title_activity_group_language"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
-        <activity android:name=".activity.MainActivity" >
+        <activity android:name=".activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

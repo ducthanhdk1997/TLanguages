@@ -3,10 +3,10 @@ package com.example.tlanguage.app_manager;
 import android.content.Context;
 
 public class ApplicationManager {
-    private static Context mContext;
+    private static Context mApplicationContext, mContext;
     private static ApplicationManager instant;
 
-    private ApplicationManager() {
+    public ApplicationManager() {
 
     }
 
@@ -17,11 +17,16 @@ public class ApplicationManager {
         return instant;
     }
 
-    public void setApplicationContext(Context context) {
+    public void setApplicationContext(Context applicationContext, Context context) {
+        this.mApplicationContext = applicationContext;
         this.mContext = context;
     }
 
-    public Context getApplicationContent() {
+    public Context getContext() {
         return this.mContext;
+    }
+
+    public Context getApplicationContent() {
+        return this.mApplicationContext;
     }
 }

@@ -9,4 +9,7 @@
     <color name="text_black">#000</color>
     <color name="text_header">#5FF6DF</color>
     <color name="item_tint">#000</color>
+    <color name="transparent">#00000000</color>
+    <color name="collapsing_title">#07F84B</color>
+    <color name="collapsing_title_expanded">#3EFBC6</color>
 </resources>
