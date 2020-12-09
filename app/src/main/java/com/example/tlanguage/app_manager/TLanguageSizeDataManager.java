@@ -2,7 +2,6 @@ package com.example.tlanguage.app_manager;
 
 import android.content.Context;
 import android.graphics.Point;
-import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
 
@@ -46,7 +45,6 @@ public class TLanguageSizeDataManager extends AbstractAppManager {
 
     private void setLandscapeMode() {
         landscapeMode = mWidth > mHeight;
-        Log.d("ducthanh", toString());
     }
 
     public void init() {

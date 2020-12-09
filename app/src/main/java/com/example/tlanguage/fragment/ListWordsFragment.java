@@ -1,7 +1,6 @@
 package com.example.tlanguage.fragment;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,35 +13,34 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tlanguage.R;
-import com.example.tlanguage.action.ItemListener;
-import com.example.tlanguage.activity.WordsActivity;
-import com.example.tlanguage.adapter.MyItemGroupRecyclerViewAdapter;
-import com.example.tlanguage.databinding.FragmentListGroupListBinding;
-import com.example.tlanguage.viewmodel.ListGroupViewModel;
+import com.example.tlanguage.adapter.MyWordsFragmentRecyclerViewAdapter;
+import com.example.tlanguage.databinding.FragmentListWordsListBinding;
+import com.example.tlanguage.fragment.dummy.DummyContent;
+import com.example.tlanguage.viewmodel.ListWordsViewModel;
 
 /**
  * A fragment representing a list of Items.
  */
-public class ListGroupFragment extends Fragment implements ItemListener {
+public class ListWordsFragment extends Fragment {
 
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
     private int mColumnCount = 1;
-    private ListGroupViewModel mListGroupViewModel;
-    private FragmentListGroupListBinding mBinding;
+    private ListWordsViewModel mListWordsViewModel;
+    private FragmentListWordsListBinding mBinding;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public ListGroupFragment() {
+    public ListWordsFragment() {
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static ListGroupFragment newInstance(int columnCount) {
-        ListGroupFragment fragment = new ListGroupFragment();
+    public static ListWordsFragment newInstance(int columnCount) {
+        ListWordsFragment fragment = new ListWordsFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -56,14 +54,14 @@ public class ListGroupFragment extends Fragment implements ItemListener {
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
         }
-        mListGroupViewModel = new ListGroupViewModel();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_list_group_list, container, false);
-        mBinding.setViewModel(mListGroupViewModel);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_list_words_list, container, false);
+        mListWordsViewModel = new ListWordsViewModel();
+        mBinding.setViewModel(mListWordsViewModel);
         View view = mBinding.getRoot();
 
         // Set the adapter
@@ -75,19 +73,8 @@ public class ListGroupFragment extends Fragment implements ItemListener {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyItemGroupRecyclerViewAdapter(mListGroupViewModel.getGroups(), this));
+            recyclerView.setAdapter(new MyWordsFragmentRecyclerViewAdapter(mListWordsViewModel.getWords()));
         }
         return view;
-    }
-
-    @Override
-    public void itemClick(View view, int position) {
-        Intent intent = new Intent(getContext(), WordsActivity.class);
-        startActivity(intent);
-    }
-
-    @Override
-    public void itemLongClick(View view, int position) {
-
     }
 }

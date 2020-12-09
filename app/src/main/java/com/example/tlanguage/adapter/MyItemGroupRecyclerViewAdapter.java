@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.tlanguage.R;
+import com.example.tlanguage.action.ItemListener;
 import com.example.tlanguage.model.Group;
 
 import java.util.List;
@@ -19,9 +20,14 @@ import java.util.List;
 public class MyItemGroupRecyclerViewAdapter extends RecyclerView.Adapter<MyItemGroupRecyclerViewAdapter.ViewHolder> {
 
     private final List<Group> mValues;
+    private ItemListener mListener;
 
-    public MyItemGroupRecyclerViewAdapter(List<Group> items) {
+    public MyItemGroupRecyclerViewAdapter(List<Group> items, ItemListener listener) {
         mValues = items;
+
+        if (listener != null) {
+            mListener = listener;
+        } else throw new RuntimeException(listener.toString() + "You must implement ItemListener");
     }
 
     @Override
@@ -43,7 +49,7 @@ public class MyItemGroupRecyclerViewAdapter extends RecyclerView.Adapter<MyItemG
         return mValues.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener{
         public final View mView;
         public final TextView mGroupName, mGroupCount;
         public Group mGroup;
@@ -52,8 +58,23 @@ public class MyItemGroupRecyclerViewAdapter extends RecyclerView.Adapter<MyItemG
         public ViewHolder(View view) {
             super(view);
             mView = view;
+            mView.setOnLongClickListener(this);
+            mView.setOnClickListener(this);
             mGroupName = view.findViewById(R.id.tvGroupName);
             mGroupCount = view.findViewById(R.id.tvGroupCount);
+        }
+
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition();
+            mListener.itemClick(v, position);
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+            int position = getAdapterPosition();
+            mListener.itemClick(v, position);
+            return false;
         }
     }
 }

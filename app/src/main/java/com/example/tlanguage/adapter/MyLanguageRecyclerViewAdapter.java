@@ -20,7 +20,7 @@ public class MyLanguageRecyclerViewAdapter extends RecyclerView.Adapter<MyLangua
 
     public MyLanguageRecyclerViewAdapter(List<Language> items, ItemListener listener) {
         mListLanguages = items;
-        if (listener instanceof ItemListener) {
+        if (listener != null) {
             this.mListener = listener;
         } else {
             throw new RuntimeException(listener.toString() + "must implement LanguageItemListener");
