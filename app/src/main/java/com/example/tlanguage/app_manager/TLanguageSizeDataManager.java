@@ -1,18 +1,23 @@
 package com.example.tlanguage.app_manager;
 
-import android.app.Activity;
 import android.content.Context;
-import android.util.DisplayMetrics;
+import android.graphics.Point;
 import android.util.Log;
+import android.view.Display;
+import android.view.WindowManager;
 
-public class TLanguageSizeDataManager extends AbstractAppManager{
-    private static int mHeight;
-    private static int mWidth;
-    private static boolean landscapeMode = false;
+public class TLanguageSizeDataManager extends AbstractAppManager {
+    private int mHeight;
+    private int mWidth;
+    private boolean landscapeMode = false;
     private static TLanguageSizeDataManager instance;
+    private Display mDisplay;
 
     private TLanguageSizeDataManager() {
         super();
+        Context context = ApplicationManager.getInstance().getApplicationContent();
+        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        mDisplay = windowManager.getDefaultDisplay();
         init();
     }
 
@@ -25,12 +30,10 @@ public class TLanguageSizeDataManager extends AbstractAppManager{
     }
 
     private void setWithAndHeight() {
-        Context context = ApplicationManager.getInstance().getContext();
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        mHeight = displayMetrics.heightPixels;
-        mWidth = displayMetrics.widthPixels;
-        Log.d("ducthanh", toString());
+        Point size = new Point();
+        mDisplay.getSize(size);
+        mWidth = size.x;
+        mHeight = size.y;
     }
 
     public int getWidth() {
@@ -43,6 +46,7 @@ public class TLanguageSizeDataManager extends AbstractAppManager{
 
     private void setLandscapeMode() {
         landscapeMode = mWidth > mHeight;
+        Log.d("ducthanh", toString());
     }
 
     public void init() {
@@ -55,11 +59,11 @@ public class TLanguageSizeDataManager extends AbstractAppManager{
     }
 
     public String toString() {
-        return "Height: " + getHeight() +"\n Width: " + getWidth() + "\n LandscapeMode: " + isLandscapeMode();
+        return "Height: " + getHeight() + "\n Width: " + getWidth() + "\n LandscapeMode: " + isLandscapeMode();
     }
 
     public int getHeaderAppbarHeight() {
-        return (int) (mHeight*0.3);
+        return (int) (mHeight * 0.3);
     }
 
     @Override
