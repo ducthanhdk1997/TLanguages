@@ -16,12 +16,13 @@ import com.example.tlanguage.R;
 import com.example.tlanguage.app_manager.TLanguageSizeDataManager;
 import com.example.tlanguage.databinding.ActivityGroupLanguageBinding;
 import com.example.tlanguage.fragment.FooterFragment;
+import com.example.tlanguage.fragment.HeaderFragment;
 import com.example.tlanguage.fragment.ListGroupFragment;
 import com.example.tlanguage.viewmodel.GroupLanguageViewModel;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 public class GroupLanguageActivity extends AppCompatActivity {
-    private Fragment mContentFragment, mFooterFragment;
+    private Fragment mHeaderFragment, mContentFragment, mFooterFragment;
     private FragmentManager mFaFragmentManager;
     Bundle mBundle;
     public String REQUEST_TITLE;
@@ -39,25 +40,16 @@ public class GroupLanguageActivity extends AppCompatActivity {
         assert mBundle != null;
         REQUEST_TITLE = mBundle.getString(RequestCodeConstant.REQUEST_TITLE);
 
+        onInitFragment();
+        onAttachFragment();
+    }
+
+    private void onInitFragment() {
+        mHeaderFragment = new HeaderFragment();
         mFooterFragment = new FooterFragment();
         mContentFragment = ListGroupFragment.newInstance(1);
         mFaFragmentManager = getSupportFragmentManager();
 
-        FragmentTransaction fragmentTransaction = mFaFragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.group_footer,mFooterFragment);
-        fragmentTransaction.add(R.id.groupContent, mContentFragment);
-        fragmentTransaction.commit();
-
-        onInitCollapsingLayout();
-    }
-
-    private void onInitCollapsingLayout() {
-        final CollapsingToolbarLayout collapsingToolbarLayout = mBinding.groupCollpasingToolbarLayout;
-        collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.personal_collapsed_title);
-        collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.personal_expanded_title);
-        collapsingToolbarLayout.setCollapsedTitleTypeface(Typeface.DEFAULT_BOLD);
-        collapsingToolbarLayout.setExpandedTitleGravity(Gravity.CENTER);
-        collapsingToolbarLayout.setCollapsedTitleGravity(Gravity.START);
     }
 
     @Override
@@ -65,5 +57,13 @@ public class GroupLanguageActivity extends AppCompatActivity {
         super.onResume();
         mGroupViewModel.onInit();
         TLanguageSizeDataManager.getInstance().init();
+    }
+
+    private void onAttachFragment() {
+        FragmentTransaction fragmentTransaction = mFaFragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.header, mHeaderFragment);
+        fragmentTransaction.add(R.id.group_footer, mFooterFragment);
+        fragmentTransaction.add(R.id.groupContent, mContentFragment);
+        fragmentTransaction.commit();
     }
 }

@@ -53,9 +53,9 @@ public class MyWordsFragmentRecyclerViewAdapter extends RecyclerView.Adapter<MyW
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            tvWord = (TextView) view.findViewById(R.id.tvWord);
-            tvMainMean = (TextView) view.findViewById(R.id.tvMainMean);
-            tvSubMean = (TextView) view.findViewById(R.id.tvSubMean);
+            tvWord = view.findViewById(R.id.tvWord);
+            tvMainMean = view.findViewById(R.id.tvMainMean);
+            tvSubMean = view.findViewById(R.id.tvSubMean);
         }
     }
 }

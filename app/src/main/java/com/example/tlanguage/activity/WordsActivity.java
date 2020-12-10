@@ -13,6 +13,7 @@ import android.view.Gravity;
 import com.example.tlanguage.R;
 import com.example.tlanguage.databinding.ActivityWordsBinding;
 import com.example.tlanguage.fragment.FooterFragment;
+import com.example.tlanguage.fragment.HeaderFragment;
 import com.example.tlanguage.fragment.ListWordsFragment;
 import com.example.tlanguage.viewmodel.WordsActivityViewModel;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -20,7 +21,7 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
 public class WordsActivity extends AppCompatActivity {
     private WordsActivityViewModel mViewModel;
     private ActivityWordsBinding mBinding;
-    private Fragment listWordFragment, mFooterFragment;
+    private Fragment listWordFragment, mFooterFragment, mHeaderFragment;
     private FragmentManager mFragmentManager;
 
     @Override
@@ -30,26 +31,22 @@ public class WordsActivity extends AppCompatActivity {
         mViewModel = new WordsActivityViewModel();
         mBinding.setViewModel(mViewModel);
 
-        listWordFragment = ListWordsFragment.newInstance(1);
-        mFooterFragment = new FooterFragment();
-
-        mFragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.wordsContent,listWordFragment);
-        fragmentTransaction.add(R.id.words_footer, mFooterFragment);
-        fragmentTransaction.commit();
-
-
-
-        initCollapsing();
+        onInitFragment();
+        onAttachFragment();
     }
 
-    private void initCollapsing() {
-        final CollapsingToolbarLayout collapsingToolbarLayout = mBinding.wordsCollpasingToolbarLayout;
-        collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.personal_collapsed_title);
-        collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.personal_expanded_title);
-        collapsingToolbarLayout.setCollapsedTitleTypeface(Typeface.DEFAULT_BOLD);
-        collapsingToolbarLayout.setExpandedTitleGravity(Gravity.CENTER);
-        collapsingToolbarLayout.setCollapsedTitleGravity(Gravity.START);
+    private void onAttachFragment() {
+        FragmentTransaction fragmentTransaction = mFragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.wordsContent, listWordFragment);
+        fragmentTransaction.add(R.id.words_footer, mFooterFragment);
+        fragmentTransaction.add(R.id.header, mHeaderFragment);
+        fragmentTransaction.commit();
+    }
+
+    private void onInitFragment() {
+        mFragmentManager = getSupportFragmentManager();
+        listWordFragment = ListWordsFragment.newInstance(1);
+        mFooterFragment = new FooterFragment();
+        mHeaderFragment = new HeaderFragment();
     }
 }

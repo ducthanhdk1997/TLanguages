@@ -14,48 +14,31 @@
         tools:context=".activity.MainActivity">
 
         <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/header"
             android:layout_width="match_parent"
+            android:background="@color/background"
             android:layout_height="0dp"
-            app:loadHeight="@{viewModel.appbarHeight}"
-            app:expanded="true"
-            android:id="@+id/main_app_bar_layout"
-            android:background="@color/background">
+            app:loadHeight="@{viewModel.appbarHeight}">
 
-            <com.google.android.material.appbar.CollapsingToolbarLayout
-                android:layout_width="match_parent"
-                app:layout_scrollFlags="scroll|snap|exitUntilCollapsed"
-                android:id="@+id/collpasing_toolbar_layout"
-                app:title="@string/app_name"
-                android:layout_height="match_parent">
-
-                <androidx.appcompat.widget.Toolbar
-                    android:layout_width="match_parent"
-                    android:id="@+id/toolbar"
-                    android:layout_height="50dp"/>
-
-                <ImageButton
-                    android:layout_margin="5dp"
-                    android:layout_width="wrap_content"
-                    android:src="@drawable/ic_baseline_add_32"
-                    app:layout_collapseMode="pin"
-                    android:id="@+id/btnMainHeaderAdd"
-                    android:onClick="@{(view) -> viewModel.onClick(view)}"
-                    android:background="@color/background"
-                    android:layout_gravity="bottom|end"
-                    android:layout_height="wrap_content">
-                </ImageButton>
-            </com.google.android.material.appbar.CollapsingToolbarLayout>
         </com.google.android.material.appbar.AppBarLayout>
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_anchor="@id/header"
+            android:layout_marginRight="16dp"
+            android:tint="#fff"
+            app:layout_anchorGravity="bottom|right|end"
+            android:src="@drawable/ic_baseline_add_circle_48"/>
 
         <LinearLayout
-            android:padding="5dp"
             android:layout_width="match_parent"
             android:id="@+id/mainContent"
             android:orientation="vertical"
             android:background="@color/background"
             app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content"/>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

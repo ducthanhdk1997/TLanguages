@@ -19,11 +19,11 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="personal_collapsed_title">
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">30sp</item>
         <item name="android:textColor">@color/collapsing_title</item>
     </style>
     <style name="personal_expanded_title">
-        <item name="android:textSize">32sp</item>
+        <item name="android:textSize">50sp</item>
         <item name="android:textColor">@color/collapsing_title_expanded</item>
     </style>
 
