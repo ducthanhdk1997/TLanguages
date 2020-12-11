@@ -1,25 +1,25 @@
 package com.example.tlanguage.activity;
 
-import android.graphics.Typeface;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
-
-import com.example.tlanguage.app_constant.RequestCodeConstant;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.BindingAdapter;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.tlanguage.R;
+import com.example.tlanguage.app_constant.RequestCodeConstant;
+import com.example.tlanguage.app_manager.AppConstance;
 import com.example.tlanguage.app_manager.TLanguageSizeDataManager;
 import com.example.tlanguage.databinding.ActivityGroupLanguageBinding;
 import com.example.tlanguage.fragment.FooterFragment;
 import com.example.tlanguage.fragment.HeaderFragment;
 import com.example.tlanguage.fragment.ListGroupFragment;
 import com.example.tlanguage.viewmodel.GroupLanguageViewModel;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 public class GroupLanguageActivity extends AppCompatActivity {
     private Fragment mHeaderFragment, mContentFragment, mFooterFragment;
@@ -32,7 +32,7 @@ public class GroupLanguageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mBinding = DataBindingUtil.setContentView(this,R.layout.activity_group_language);
+        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_group_language);
         mGroupViewModel = new GroupLanguageViewModel();
         mBinding.setViewModel(mGroupViewModel);
 
@@ -65,5 +65,12 @@ public class GroupLanguageActivity extends AppCompatActivity {
         fragmentTransaction.add(R.id.group_footer, mFooterFragment);
         fragmentTransaction.add(R.id.groupContent, mContentFragment);
         fragmentTransaction.commit();
+    }
+
+    @BindingAdapter({"showMessage"})
+    public static void runMe(View view, int messageId) {
+        if (messageId == AppConstance.START_EXERCISE_ACTIVITY) {
+            view.getContext().startActivity(new Intent(view.getContext(), ExerciseActivity.class));
+        }
     }
 }

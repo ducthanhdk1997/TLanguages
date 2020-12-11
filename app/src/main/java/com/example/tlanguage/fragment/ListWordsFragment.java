@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.tlanguage.R;
 import com.example.tlanguage.adapter.MyWordsFragmentRecyclerViewAdapter;
 import com.example.tlanguage.databinding.FragmentListWordsListBinding;
-import com.example.tlanguage.fragment.dummy.DummyContent;
 import com.example.tlanguage.viewmodel.ListWordsViewModel;
 
 /**

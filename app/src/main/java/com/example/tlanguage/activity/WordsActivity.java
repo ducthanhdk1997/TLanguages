@@ -1,16 +1,20 @@
 package com.example.tlanguage.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.BindingAdapter;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
 
 import com.example.tlanguage.R;
+import com.example.tlanguage.app_manager.AppConstance;
 import com.example.tlanguage.databinding.ActivityWordsBinding;
 import com.example.tlanguage.fragment.FooterFragment;
 import com.example.tlanguage.fragment.HeaderFragment;
@@ -48,5 +52,38 @@ public class WordsActivity extends AppCompatActivity {
         listWordFragment = ListWordsFragment.newInstance(1);
         mFooterFragment = new FooterFragment();
         mHeaderFragment = new HeaderFragment();
+    }
+
+    @BindingAdapter({"showMessage"})
+    public static void runMe(View view, int messageId) {
+        if (messageId == AppConstance.START_EXERCISE_ACTIVITY) {
+            view.getContext().startActivity(new Intent(view.getContext(), ExerciseActivity.class));
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
     }
 }

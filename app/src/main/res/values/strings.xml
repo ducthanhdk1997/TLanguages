@@ -5,4 +5,7 @@
     <string name="title_activity_group_language">GroupLanguageActivity</string>
     <string name="exercise">Exercise</string>
     <string name="hard_word">Hard Word</string>
+    <string name="title_activity_exercise">ExerciseActivity</string>
+    <string name="tab_text_1">Listening</string>
+    <string name="tab_text_2">Choosing</string>
 </resources>

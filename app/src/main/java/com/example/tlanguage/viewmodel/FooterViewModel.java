@@ -5,41 +5,37 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.databinding.Bindable;
 
+import com.example.tlanguage.BR;
 import com.example.tlanguage.R;
+import com.example.tlanguage.app_manager.AppConstance;
 
 public class FooterViewModel extends AbstractViewModel {
-    private int mButtonWidth;
+
+    @Bindable
+    private int messageId;
 
     public FooterViewModel() {
         super();
-        setButtonWidth(mTLanguageSizeDataManager.getWidth());
     }
 
-    @Bindable
-    public int getButtonWidth() {
-        return mButtonWidth;
+    public int getMessageId() {
+        return messageId;
     }
 
-    public void setButtonWidth(int realScreanWidth) {
-        this.mButtonWidth = (int) (realScreanWidth * 0.45);
-        notifyChange();
+    public void setMessageId(int message) {
+        this.messageId = messageId;
     }
+
     @Override
     public void onInit() {
-        setButtonWidth(mTLanguageSizeDataManager.getWidth());
         notifyChange();
     }
 
     @Override
     public void onClick(@NonNull View view) {
-        switch (view.getId()) {
-            case R.id.btnExercise:
-                // your code
-                break;
-            case R.id.btnHardWord:
-                // your code
-                break;
+        if (view.getId() == R.id.btnExercise) {
+            messageId = AppConstance.START_EXERCISE_ACTIVITY;
+            notifyPropertyChanged(BR.messageId);
         }
     }
-    // TODO: Implement the ViewModel
 }
