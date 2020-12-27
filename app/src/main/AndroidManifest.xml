@@ -10,15 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.ExerciseActivity"
+            android:name=".view.activity.ExerciseActivity"
             android:label="@string/title_activity_exercise"
             android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".activity.WordsActivity" />
+        <activity android:name=".view.activity.WordsActivity" />
         <activity
-            android:name=".activity.GroupLanguageActivity"
+            android:name=".view.activity.GroupLanguageActivity"
             android:label="@string/title_activity_group_language"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".view.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

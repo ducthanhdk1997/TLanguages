@@ -1,4 +1,4 @@
-package com.example.tlanguage.activity;
+package com.example.tlanguage.view.activity;
 
 import android.os.Bundle;
 

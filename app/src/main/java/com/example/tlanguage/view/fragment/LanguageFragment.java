@@ -1,4 +1,4 @@
-package com.example.tlanguage.fragment;
+package com.example.tlanguage.view.fragment;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tlanguage.R;
 import com.example.tlanguage.action.ItemListener;
-import com.example.tlanguage.activity.GroupLanguageActivity;
+import com.example.tlanguage.view.activity.GroupLanguageActivity;
 import com.example.tlanguage.adapter.MyLanguageRecyclerViewAdapter;
 import com.example.tlanguage.app_constant.RequestCodeConstant;
 import com.example.tlanguage.databinding.FragmentItemListBinding;

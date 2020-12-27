@@ -12,4 +12,5 @@
     <color name="transparent">#00000000</color>
     <color name="collapsing_title">#07F84B</color>
     <color name="collapsing_title_expanded">#3EFBC6</color>
+    <color name="success">#25B9EA</color>
 </resources>

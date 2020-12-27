@@ -1,4 +1,4 @@
-package com.example.tlanguage.activity;
+package com.example.tlanguage.view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,9 +16,9 @@ import com.example.tlanguage.app_constant.RequestCodeConstant;
 import com.example.tlanguage.app_manager.AppConstance;
 import com.example.tlanguage.app_manager.TLanguageSizeDataManager;
 import com.example.tlanguage.databinding.ActivityGroupLanguageBinding;
-import com.example.tlanguage.fragment.FooterFragment;
-import com.example.tlanguage.fragment.HeaderFragment;
-import com.example.tlanguage.fragment.ListGroupFragment;
+import com.example.tlanguage.view.fragment.FooterFragment;
+import com.example.tlanguage.view.fragment.HeaderFragment;
+import com.example.tlanguage.view.fragment.ListGroupFragment;
 import com.example.tlanguage.viewmodel.GroupLanguageViewModel;
 
 public class GroupLanguageActivity extends AppCompatActivity {

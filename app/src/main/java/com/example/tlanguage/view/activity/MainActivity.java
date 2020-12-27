@@ -1,4 +1,4 @@
-package com.example.tlanguage.activity;
+package com.example.tlanguage.view.activity;
 
 import android.os.Bundle;
 
@@ -12,8 +12,8 @@ import com.example.tlanguage.R;
 import com.example.tlanguage.app_manager.ApplicationManager;
 import com.example.tlanguage.app_manager.TLanguageSizeDataManager;
 import com.example.tlanguage.databinding.ActivityMainBinding;
-import com.example.tlanguage.fragment.HeaderFragment;
-import com.example.tlanguage.fragment.LanguageFragment;
+import com.example.tlanguage.view.fragment.HeaderFragment;
+import com.example.tlanguage.view.fragment.LanguageFragment;
 import com.example.tlanguage.viewmodel.MainActivityViewModel;
 
 public class MainActivity extends AppCompatActivity {
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        mTLanguageSizeDataManager.invalidate();
+        mTLanguageSizeDataManager.init();
         mMainActivityViewModel.invalidate();
     }
 

@@ -16,6 +16,6 @@
         android:layout_marginLeft="@dimen/item_margin"
         android:layout_marginRight="@dimen/item_margin"
         app:layoutManager="LinearLayoutManager"
-        tools:context=".fragment.LanguageFragment"
+        tools:context=".view.fragment.LanguageFragment"
         tools:listitem="@layout/fragment_item" />
 </layout>

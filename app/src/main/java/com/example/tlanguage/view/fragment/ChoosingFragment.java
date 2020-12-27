@@ -1,13 +1,16 @@
-package com.example.tlanguage.fragment;
+package com.example.tlanguage.view.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 
 import com.example.tlanguage.R;
+import com.example.tlanguage.databinding.FragmentChoosingBinding;
+import com.example.tlanguage.viewmodel.ChoosingViewModel;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,6 +27,8 @@ public class ChoosingFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private ChoosingViewModel mChoosingViewModel;
+    private FragmentChoosingBinding mBinding;
 
     public ChoosingFragment() {
         // Required empty public constructor
@@ -60,6 +65,10 @@ public class ChoosingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_choosing, container, false);
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_choosing, container, false);
+        View view = mBinding.getRoot();
+        mChoosingViewModel = new ChoosingViewModel();
+        mBinding.setViewModel(mChoosingViewModel);
+        return view;
     }
 }

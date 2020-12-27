@@ -16,6 +16,6 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         app:layoutManager="LinearLayoutManager"
-        tools:context=".fragment.ListWordsFragment"
+        tools:context=".view.fragment.ListWordsFragment"
         tools:listitem="@layout/word_item" />
 </layout>

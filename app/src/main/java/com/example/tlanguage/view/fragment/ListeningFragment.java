@@ -1,4 +1,4 @@
-package com.example.tlanguage.fragment;
+package com.example.tlanguage.view.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

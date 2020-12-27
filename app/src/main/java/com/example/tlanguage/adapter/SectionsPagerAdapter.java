@@ -9,8 +9,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.tlanguage.R;
-import com.example.tlanguage.fragment.ChoosingFragment;
-import com.example.tlanguage.fragment.ListeningFragment;
+import com.example.tlanguage.view.fragment.ChoosingFragment;
+import com.example.tlanguage.view.fragment.ListeningFragment;
 
 /**
  * A [FragmentPagerAdapter] that returns a fragment corresponding to

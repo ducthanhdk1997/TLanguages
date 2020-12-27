@@ -1,4 +1,4 @@
-package com.example.tlanguage.activity;
+package com.example.tlanguage.view.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.BindingAdapter;
@@ -8,19 +8,16 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 
 import com.example.tlanguage.R;
 import com.example.tlanguage.app_manager.AppConstance;
 import com.example.tlanguage.databinding.ActivityWordsBinding;
-import com.example.tlanguage.fragment.FooterFragment;
-import com.example.tlanguage.fragment.HeaderFragment;
-import com.example.tlanguage.fragment.ListWordsFragment;
+import com.example.tlanguage.view.fragment.FooterFragment;
+import com.example.tlanguage.view.fragment.HeaderFragment;
+import com.example.tlanguage.view.fragment.ListWordsFragment;
 import com.example.tlanguage.viewmodel.WordsActivityViewModel;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
 
 public class WordsActivity extends AppCompatActivity {
     private WordsActivityViewModel mViewModel;

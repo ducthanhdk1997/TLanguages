@@ -1,7 +1,6 @@
-package com.example.tlanguage.fragment;
+package com.example.tlanguage.view.fragment;
 
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.ViewModelProviders;
 
 import android.os.Bundle;
 

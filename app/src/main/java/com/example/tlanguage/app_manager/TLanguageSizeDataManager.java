@@ -5,17 +5,17 @@ import android.graphics.Point;
 import android.view.Display;
 import android.view.WindowManager;
 
-public class TLanguageSizeDataManager extends AbstractAppManager {
+public class TLanguageSizeDataManager{
     private int mHeight;
     private int mWidth;
     private boolean landscapeMode = false;
     private static TLanguageSizeDataManager instance;
     private Display mDisplay;
+    private Context mAppContext;
 
     private TLanguageSizeDataManager() {
-        super();
-        Context context = ApplicationManager.getInstance().getApplicationContent();
-        WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        mAppContext = ApplicationManager.getInstance().getApplicationContent();
+        WindowManager windowManager = (WindowManager) mAppContext.getSystemService(Context.WINDOW_SERVICE);
         mDisplay = windowManager.getDefaultDisplay();
         init();
     }
@@ -62,11 +62,6 @@ public class TLanguageSizeDataManager extends AbstractAppManager {
 
     public int getHeaderAppbarHeight() {
         return (int) (mHeight * 0.3);
-    }
-
-    @Override
-    protected void onInit() {
-        init();
     }
 
 }
