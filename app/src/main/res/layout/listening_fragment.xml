@@ -1,23 +1,108 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/constraintLayout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.fragment.ListeningFragment">
+<layout>
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.tlanguage.viewmodel.ListeningViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        tools:context=".view.fragment.ListeningFragment">
 
-    <TextView
-        android:id="@+id/section_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/constraintLayout"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintTop_creator="1" />
+        <androidx.constraintlayout.widget.Guideline
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/guiTop"
+            app:layout_constraintGuide_percent="0.15"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:layout_gravity="center"
+            android:id="@+id/tv_listening_count"
+            android:layout_width="wrap_content"
+            android:text="1/20 words"
+            android:textStyle="bold"
+            android:textColor="@color/text_black"
+            android:textSize="25sp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/guiTop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:id="@+id/listening_content"
+            app:layout_constraintTop_toBottomOf="@+id/tv_listening_count"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="10dp"
+            android:background="@color/item_selected"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txt_listening_word"
+                android:layout_width="match_parent"
+                android:textAlignment="center"
+                android:textStyle="bold"
+                android:textSize="40sp"
+                android:textColor="@color/word"
+                android:text="word"
+                android:layout_height="120dp"/>
+
+            <TextView
+                android:id="@+id/txt_listening_mean"
+                android:layout_width="match_parent"
+                android:textAlignment="center"
+                android:textSize="40sp"
+                android:textColor="@color/success"
+                android:text="mean"
+                android:layout_height="120dp"/>
+
+            <TextView
+                android:layout_gravity="center"
+                android:id="@+id/txt_listening_words_count"
+                android:layout_width="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:text="step: 4/5"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/listening_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+            <ImageButton
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/ic_baseline_skip_previous_42"
+                android:background="@color/background"
+                android:id="@+id/imb_listening_pre"/>
+            <ImageButton
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_baseline_play_circle_filled_42"
+                android:background="@color/background"
+                android:id="@+id/imb_listening_stop"/>
+            <ImageButton
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/ic_baseline_skip_next_42"
+                android:background="@color/background"
+                android:layout_marginLeft="5dp"
+                android:id="@+id/imb_listening_next"/>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
