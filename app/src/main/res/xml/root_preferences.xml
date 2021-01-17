@@ -1,0 +1,27 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/listening_setting_header">
+
+        <SwitchPreferenceCompat
+            app:key="swap_words"
+            app:title="@string/swap_words_title" />
+
+        <ListPreference
+            app:defaultValue="1"
+            app:entries="@array/repeat_entries"
+            app:entryValues="@array/repeat_values"
+            app:key="repeat"
+            app:title="@string/repeat_title"
+            app:useSimpleSummaryProvider="true" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="@string/choosing_header">
+
+        <SwitchPreferenceCompat
+            app:key="auto_speak_words"
+            app:title="@string/auto_speak_words_title" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

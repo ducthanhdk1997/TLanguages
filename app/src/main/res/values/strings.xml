@@ -8,4 +8,17 @@
     <string name="title_activity_exercise">ExerciseActivity</string>
     <string name="tab_text_1">Listening</string>
     <string name="tab_text_2">Choosing</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference Titles -->
+    <string name="listening_setting_header">Listening Setting</string>
+    <string name="choosing_header">Choosing Setting</string>
+
+    <!--    Listening Preferences-->
+
+    <string name="repeat_title">Repeat repeat words exercise</string>
+    <string name="swap_words_title">Swap words when exercise</string>
+
+    <!--    Choosing Preference-->
+    <string name="auto_speak_words_title">Repeat words when exercise</string>
 </resources>

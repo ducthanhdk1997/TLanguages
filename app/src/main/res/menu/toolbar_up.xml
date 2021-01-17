@@ -9,7 +9,7 @@
         android:id="@+id/menuAdd"/>
     <item
         android:title="Setting"
-        android:icon="@drawable/ic_baseline_more_vert_32"
+        android:icon="@drawable/ic_baseline_settings_32"
         app:showAsAction="always"
         android:id="@+id/menuSetting"/>
 </menu>

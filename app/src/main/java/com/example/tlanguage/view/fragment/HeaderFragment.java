@@ -1,5 +1,6 @@
 package com.example.tlanguage.view.fragment;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
@@ -9,10 +10,12 @@ import androidx.fragment.app.Fragment;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.tlanguage.R;
+import com.example.tlanguage.view.activity.SettingsActivity;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 
@@ -103,12 +106,27 @@ public class HeaderFragment extends Fragment {
                 }
             }
         });
+        mToolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.menuSetting:
+                        Intent settingIntent = new Intent(getActivity(), SettingsActivity.class);
+                        startActivity(settingIntent);
+                        break;
+                    case R.id.menuAdd:
+                        break;
+                }
+                return false;
+            }
+        });
+
 
         return view;
     }
     private void initCollapsing() {
         collapsingToolbarLayout.setTitleEnabled(true);
-        collapsingToolbarLayout.setTitle("Tenglhis");
+        collapsingToolbarLayout.setTitle("TEnglish");
         collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.personal_collapsed_title);
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.personal_expanded_title);
         collapsingToolbarLayout.setCollapsedTitleTypeface(Typeface.DEFAULT_BOLD);

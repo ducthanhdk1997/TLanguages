@@ -10,9 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".view.activity.SettingsActivity"
+            android:label="@string/title_activity_settings"></activity>
+        <activity
             android:name=".view.activity.ExerciseActivity"
             android:label="@string/title_activity_exercise"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".view.activity.WordsActivity" />
         <activity
             android:name=".view.activity.GroupLanguageActivity"
