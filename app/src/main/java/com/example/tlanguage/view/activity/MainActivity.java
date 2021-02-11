@@ -1,5 +1,6 @@
 package com.example.tlanguage.view.activity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,22 +8,26 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.preference.PreferenceManager;
 
 import com.example.tlanguage.R;
 import com.example.tlanguage.app_manager.ApplicationManager;
+import com.example.tlanguage.app_manager.InterfaceActivity;
 import com.example.tlanguage.app_manager.TLanguageSizeDataManager;
 import com.example.tlanguage.databinding.ActivityMainBinding;
+import com.example.tlanguage.setting.SettingDataManage;
 import com.example.tlanguage.view.fragment.HeaderFragment;
 import com.example.tlanguage.view.fragment.LanguageFragment;
 import com.example.tlanguage.viewmodel.MainActivityViewModel;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements InterfaceActivity {
     private Fragment mContentFragment, mHeaderFragment;
     private FragmentManager mFragmentManager;
     private ApplicationManager mApplicationManager;
     private TLanguageSizeDataManager mTLanguageSizeDataManager;
     private MainActivityViewModel mMainActivityViewModel;
     private ActivityMainBinding mMainBinding;
+    private SettingDataManage mSettingDataManage = SettingDataManage.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,9 +39,14 @@ public class MainActivity extends AppCompatActivity {
         mTLanguageSizeDataManager = TLanguageSizeDataManager.getInstance();
         mMainActivityViewModel = new MainActivityViewModel();
         mMainBinding.setViewModel(mMainActivityViewModel);
-
         onInitFragment();
         onAttachFragment();
+        updateSettingData();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 
     private void onInitFragment() {
@@ -73,5 +83,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+    }
+
+    @Override
+    public void updateSettingData() {
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean swap = sharedPreferences.getBoolean("swap_words", false);
+        int repeat = Integer.parseInt(sharedPreferences.getString("repeat", "1"));
+        boolean autoSpeckWord = sharedPreferences.getBoolean("auto_speak_words", false);
+        mSettingDataManage.onUpdate(swap, repeat, autoSpeckWord);
     }
 }
