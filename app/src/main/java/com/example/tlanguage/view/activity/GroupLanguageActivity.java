@@ -45,7 +45,7 @@ public class GroupLanguageActivity extends AppCompatActivity {
     }
 
     private void onInitFragment() {
-        mHeaderFragment = new HeaderFragment();
+        mHeaderFragment = HeaderFragment.newInstance(AppConstance.START_GROUP_ACTIVITY);
         mFooterFragment = new FooterFragment();
         mContentFragment = ListGroupFragment.newInstance(1);
         mFaFragmentManager = getSupportFragmentManager();

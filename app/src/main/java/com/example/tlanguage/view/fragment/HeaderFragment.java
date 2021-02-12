@@ -1,9 +1,11 @@
 package com.example.tlanguage.view.fragment;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
+import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
@@ -13,11 +15,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.tlanguage.R;
 import com.example.tlanguage.view.activity.SettingsActivity;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
+import com.example.tlanguage.app_manager.AppConstance;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,15 +31,8 @@ import com.google.android.material.appbar.CollapsingToolbarLayout;
  * create an instance of this fragment.
  */
 public class HeaderFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private int ACTIVITY_CALL;
     private CollapsingToolbarLayout collapsingToolbarLayout;
     private Toolbar mToolbar;
     private AppBarLayout appBarLayout;
@@ -42,20 +41,10 @@ public class HeaderFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment HeaderFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static HeaderFragment newInstance(String param1, String param2) {
+    public static HeaderFragment newInstance(int activity) {
         HeaderFragment fragment = new HeaderFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putInt(ARG_PARAM1, activity);
         fragment.setArguments(args);
         return fragment;
     }
@@ -64,8 +53,7 @@ public class HeaderFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            ACTIVITY_CALL = getArguments().getInt(ARG_PARAM1);
         }
     }
 
@@ -73,7 +61,7 @@ public class HeaderFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_header, container, false);
+        final View view = inflater.inflate(R.layout.fragment_header, container, false);
         collapsingToolbarLayout = view.findViewById(R.id.words_collpasing_toolbar_layout);
         initCollapsing();
         mToolbar = view.findViewById(R.id.header_toolbar);
@@ -81,10 +69,10 @@ public class HeaderFragment extends Fragment {
         appBarLayout = getActivity().findViewById(R.id.header);
 
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-
             boolean isVisible = true;
             int scrollRange = -1;
             Menu menu = mToolbar.getMenu();
+
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
                 if (scrollRange == -1) {
@@ -97,7 +85,7 @@ public class HeaderFragment extends Fragment {
                     }
                     isVisible = true;
 
-                } else if(isVisible) {
+                } else if (isVisible) {
                     if (isVisible) {
                         menu.clear();
                         mToolbar.inflateMenu(R.menu.tool_bar_menu);
@@ -115,6 +103,7 @@ public class HeaderFragment extends Fragment {
                         startActivity(settingIntent);
                         break;
                     case R.id.menuAdd:
+                        actionAdd(view);
                         break;
                 }
                 return false;
@@ -124,6 +113,62 @@ public class HeaderFragment extends Fragment {
 
         return view;
     }
+
+    private void actionAdd(View view) {
+        PopupMenu popupMenu = new PopupMenu(getContext(), view);
+        switch (ACTIVITY_CALL) {
+            case AppConstance.START_MAIN_ACTIVITY:
+                popupMenu.inflate(R.menu.add_language_menu);
+                break;
+            case AppConstance.START_GROUP_ACTIVITY:
+                final Dialog groupDialog = new Dialog(getContext());
+                groupDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                groupDialog.setContentView(R.layout.layout_add_group);
+                groupDialog.setCanceledOnTouchOutside(false);
+
+                final EditText nameGroup = groupDialog.findViewById(R.id.edit_name_group);
+                Button btnDoneGroup = groupDialog.findViewById(R.id.btn_add_Done);
+                Button btnCancelGroup = groupDialog.findViewById(R.id.btn_add_Cancel);
+
+                btnCancelGroup.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        groupDialog.dismiss();
+                    }
+                });
+
+                groupDialog.show();
+                break;
+            case AppConstance.START_VOCABULARY_ACTIVITY:
+                final Dialog vocabularyDialog = new Dialog(getContext());
+                vocabularyDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                vocabularyDialog.setContentView(R.layout.add_vocabulary_dialog);
+                vocabularyDialog.setCanceledOnTouchOutside(false);
+
+                final EditText editWord = vocabularyDialog.findViewById(R.id.edit_add_word);
+                final EditText editMean = vocabularyDialog.findViewById(R.id.edit_add_mean);
+                Button btnDone = vocabularyDialog.findViewById(R.id.btn_add_Done);
+                Button btnCancel = vocabularyDialog.findViewById(R.id.btn_add_Cancel);
+
+                btnCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        vocabularyDialog.dismiss();
+                    }
+                });
+                vocabularyDialog.show();
+                break;
+        }
+
+        popupMenu.show();
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                return false;
+            }
+        });
+    }
+
     private void initCollapsing() {
         collapsingToolbarLayout.setTitleEnabled(true);
         collapsingToolbarLayout.setTitle("TEnglish");

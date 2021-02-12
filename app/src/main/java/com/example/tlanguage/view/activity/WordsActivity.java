@@ -48,7 +48,7 @@ public class WordsActivity extends AppCompatActivity {
         mFragmentManager = getSupportFragmentManager();
         listWordFragment = ListWordsFragment.newInstance(1);
         mFooterFragment = new FooterFragment();
-        mHeaderFragment = new HeaderFragment();
+        mHeaderFragment = HeaderFragment.newInstance(AppConstance.START_VOCABULARY_ACTIVITY);
     }
 
     @BindingAdapter({"showMessage"})
