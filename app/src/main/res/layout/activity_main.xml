@@ -23,12 +23,13 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_group"
+            android:id="@+id/fab_add_language"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_anchor="@id/header"
             android:layout_marginRight="16dp"
             android:tint="#fff"
+            android:onClick="@{(view) -> viewModel.onClick(view)}"
             app:layout_anchorGravity="bottom|right|end"
             android:src="@drawable/ic_baseline_add_circle_48"/>
 

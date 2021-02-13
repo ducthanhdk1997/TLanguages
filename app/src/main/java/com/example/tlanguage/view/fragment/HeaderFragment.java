@@ -20,6 +20,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.tlanguage.R;
+import com.example.tlanguage.app_manager.ApplicationManager;
+import com.example.tlanguage.app_manager.PopupManage;
 import com.example.tlanguage.view.activity.SettingsActivity;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -109,27 +111,24 @@ public class HeaderFragment extends Fragment {
                 return false;
             }
         });
-
-
         return view;
     }
 
     private void actionAdd(View view) {
-        PopupMenu popupMenu = new PopupMenu(getContext(), view);
         switch (ACTIVITY_CALL) {
             case AppConstance.START_MAIN_ACTIVITY:
-                popupMenu.inflate(R.menu.add_language_menu);
+                PopupManage popupManage = ApplicationManager.getInstance().getPopupManage();
+                popupManage.createPopup(view, AppConstance.START_MAIN_ACTIVITY);
                 break;
             case AppConstance.START_GROUP_ACTIVITY:
                 final Dialog groupDialog = new Dialog(getContext());
                 groupDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 groupDialog.setContentView(R.layout.layout_add_group);
                 groupDialog.setCanceledOnTouchOutside(false);
-
-                final EditText nameGroup = groupDialog.findViewById(R.id.edit_name_group);
-                Button btnDoneGroup = groupDialog.findViewById(R.id.btn_add_Done);
-                Button btnCancelGroup = groupDialog.findViewById(R.id.btn_add_Cancel);
-
+                final EditText nameGroup = groupDialog.findViewById(R.id.edit_add_name_group);
+                Button btnDoneGroup = groupDialog.findViewById(R.id.btn_add_group_done);
+                Button btnCancelGroup = groupDialog.findViewById(R.id.btn_add_group_cancel);
+                groupDialog.show();
                 btnCancelGroup.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -137,7 +136,6 @@ public class HeaderFragment extends Fragment {
                     }
                 });
 
-                groupDialog.show();
                 break;
             case AppConstance.START_VOCABULARY_ACTIVITY:
                 final Dialog vocabularyDialog = new Dialog(getContext());
@@ -145,8 +143,8 @@ public class HeaderFragment extends Fragment {
                 vocabularyDialog.setContentView(R.layout.add_vocabulary_dialog);
                 vocabularyDialog.setCanceledOnTouchOutside(false);
 
-                final EditText editWord = vocabularyDialog.findViewById(R.id.edit_add_word);
-                final EditText editMean = vocabularyDialog.findViewById(R.id.edit_add_mean);
+                final EditText editWord = vocabularyDialog.findViewById(R.id.edit_add_voc_word);
+                final EditText editMean = vocabularyDialog.findViewById(R.id.edit_add_voc_mean);
                 Button btnDone = vocabularyDialog.findViewById(R.id.btn_add_Done);
                 Button btnCancel = vocabularyDialog.findViewById(R.id.btn_add_Cancel);
 
@@ -159,14 +157,6 @@ public class HeaderFragment extends Fragment {
                 vocabularyDialog.show();
                 break;
         }
-
-        popupMenu.show();
-        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                return false;
-            }
-        });
     }
 
     private void initCollapsing() {

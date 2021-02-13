@@ -21,7 +21,7 @@
     <EditText
         android:layout_below="@+id/add_group_title"
         android:background="#FFF"
-        android:id="@+id/edit_name_group"
+        android:id="@+id/edit_add_name_group"
         android:layout_width="match_parent"
         android:layout_margin="5dp"
         android:inputType="textUri"
@@ -30,7 +30,7 @@
 
     <LinearLayout
         android:padding="10dp"
-        android:layout_below="@+id/edit_name_group"
+        android:layout_below="@+id/edit_add_name_group"
         android:layout_gravity="bottom"
         android:layout_width="match_parent"
         android:background="#ECEAEA"
@@ -38,7 +38,7 @@
         android:weightSum="2"
         android:layout_height="wrap_content">
         <Button
-            android:id="@+id/btn_add_Done"
+            android:id="@+id/btn_add_group_done"
             android:text="Done"
             android:background="#2DB8EF"
             android:layout_width="wrap_content"
@@ -49,13 +49,10 @@
         <Button
             android:background="#2DB8EF"
             android:text="Cancel"
-            android:id="@+id/btn_add_Cancel"
+            android:id="@+id/btn_add_group_cancel"
             android:layout_width="wrap_content"
             android:layout_weight="1"
             android:layout_height="50dp">
         </Button>
     </LinearLayout>
-
-
-
 </RelativeLayout>

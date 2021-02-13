@@ -5,9 +5,10 @@ import android.content.Context;
 public class ApplicationManager {
     private static Context mApplicationContext, mContext;
     private static ApplicationManager instant;
+    private static PopupManage mPopupManage;
 
     public ApplicationManager() {
-
+       
     }
 
     public static ApplicationManager getInstance() {
@@ -26,7 +27,14 @@ public class ApplicationManager {
         return this.mContext;
     }
 
-    public Context getApplicationContent() {
+    public Context getApplicationContext() {
         return this.mApplicationContext;
+    }
+
+    public PopupManage getPopupManage() {
+        if (mPopupManage == null) {
+            mPopupManage = new PopupManage();
+        }
+        return mPopupManage;
     }
 }

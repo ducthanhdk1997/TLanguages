@@ -14,7 +14,7 @@ public class TLanguageSizeDataManager{
     private Context mAppContext;
 
     private TLanguageSizeDataManager() {
-        mAppContext = ApplicationManager.getInstance().getApplicationContent();
+        mAppContext = ApplicationManager.getInstance().getApplicationContext();
         WindowManager windowManager = (WindowManager) mAppContext.getSystemService(Context.WINDOW_SERVICE);
         mDisplay = windowManager.getDefaultDisplay();
         init();
