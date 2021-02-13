@@ -4,6 +4,9 @@ import android.view.View;
 
 import androidx.annotation.NonNull;
 
+import com.example.tlanguage.R;
+import com.example.tlanguage.app_manager.DialogGroupManage;
+
 public class GroupLanguageViewModel extends AbstractViewModel {
     private String appBarTitle = "English";
 
@@ -22,6 +25,7 @@ public class GroupLanguageViewModel extends AbstractViewModel {
 
     @Override
     public void onClick(@NonNull View view) {
-
+        if (view.getId() == R.id.fab_group) {
+        }
     }
 }

@@ -1,13 +1,8 @@
 package com.example.tlanguage.app_manager
-import android.app.Dialog
-import android.content.Context
 import android.view.View
-import android.view.Window
-import android.widget.Button
-import android.widget.EditText
 import android.widget.PopupMenu
 import com.example.tlanguage.R
-import com.example.tlanguage.view.activity.GroupLanguageActivity
+import com.example.tlanguage.app_constant.AppConstance
 
 class PopupManage : PopupManageInterface {
     private val mContext = ApplicationManager.getInstance().applicationContext

@@ -12,7 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.tlanguage.R;
-import com.example.tlanguage.app_manager.AppConstance;
+import com.example.tlanguage.app_constant.AppConstance;
 import com.example.tlanguage.databinding.ActivityWordsBinding;
 import com.example.tlanguage.view.fragment.FooterFragment;
 import com.example.tlanguage.view.fragment.HeaderFragment;

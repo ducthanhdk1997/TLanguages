@@ -1,58 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:padding="5dp"
     android:background="#BCD4D6D6"
     android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/add_group_title"
-        android:layout_width="match_parent"
-        android:textSize="20dp"
-        android:text="Add Group"
-        android:textColor="#EF3E90"
-        android:textAlignment="center"
-        android:padding="10dp"
-        android:textStyle="bold"
-        android:layout_height="wrap_content">
-    </TextView>
-
     <EditText
-        android:layout_below="@+id/add_group_title"
         android:background="#FFF"
         android:id="@+id/edit_add_name_group"
         android:layout_width="match_parent"
         android:layout_margin="5dp"
+        android:hint="name group"
         android:inputType="textUri"
         android:layout_height="60dp">
     </EditText>
-
-    <LinearLayout
-        android:padding="10dp"
-        android:layout_below="@+id/edit_add_name_group"
-        android:layout_gravity="bottom"
-        android:layout_width="match_parent"
-        android:background="#ECEAEA"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/btn_add_group_done"
-            android:text="Done"
-            android:background="#2DB8EF"
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:layout_height="50dp">
-
-        </Button>
-        <Button
-            android:background="#2DB8EF"
-            android:text="Cancel"
-            android:id="@+id/btn_add_group_cancel"
-            android:layout_width="wrap_content"
-            android:layout_weight="1"
-            android:layout_height="50dp">
-        </Button>
-    </LinearLayout>
-</RelativeLayout>
+</LinearLayout>

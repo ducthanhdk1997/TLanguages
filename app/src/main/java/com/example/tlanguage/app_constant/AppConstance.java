@@ -1,4 +1,4 @@
-package com.example.tlanguage.app_manager;
+package com.example.tlanguage.app_constant;
 
 public class AppConstance {
     public static final int START_MAIN_ACTIVITY = 1;

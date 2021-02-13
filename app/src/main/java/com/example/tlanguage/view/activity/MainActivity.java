@@ -11,7 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.preference.PreferenceManager;
 
 import com.example.tlanguage.R;
-import com.example.tlanguage.app_manager.AppConstance;
+import com.example.tlanguage.app_constant.AppConstance;
 import com.example.tlanguage.app_manager.ApplicationManager;
 import com.example.tlanguage.app_manager.InterfaceActivity;
 import com.example.tlanguage.app_manager.TLanguageSizeDataManager;

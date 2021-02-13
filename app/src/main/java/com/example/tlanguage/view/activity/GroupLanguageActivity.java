@@ -2,7 +2,9 @@ package com.example.tlanguage.view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.BindingAdapter;
@@ -13,7 +15,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.tlanguage.R;
 import com.example.tlanguage.app_constant.RequestCodeConstant;
-import com.example.tlanguage.app_manager.AppConstance;
+import com.example.tlanguage.app_constant.AppConstance;
+import com.example.tlanguage.app_manager.DialogGroupManage;
 import com.example.tlanguage.app_manager.TLanguageSizeDataManager;
 import com.example.tlanguage.databinding.ActivityGroupLanguageBinding;
 import com.example.tlanguage.view.fragment.FooterFragment;
@@ -21,7 +24,7 @@ import com.example.tlanguage.view.fragment.HeaderFragment;
 import com.example.tlanguage.view.fragment.ListGroupFragment;
 import com.example.tlanguage.viewmodel.GroupLanguageViewModel;
 
-public class GroupLanguageActivity extends AppCompatActivity {
+public class GroupLanguageActivity extends AppCompatActivity implements DialogGroupManage.DialogGroupListener {
     private Fragment mHeaderFragment, mContentFragment, mFooterFragment;
     private FragmentManager mFaFragmentManager;
     Bundle mBundle;
@@ -72,5 +75,11 @@ public class GroupLanguageActivity extends AppCompatActivity {
         if (messageId == AppConstance.START_EXERCISE_ACTIVITY) {
             view.getContext().startActivity(new Intent(view.getContext(), ExerciseActivity.class));
         }
+    }
+
+    @Override
+    public void handleClickOK() {
+        Log.d("ducthanh","ok");
+        Toast.makeText(this,"ok", Toast.LENGTH_LONG).show();
     }
 }

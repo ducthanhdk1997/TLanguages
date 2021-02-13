@@ -7,7 +7,7 @@ import androidx.databinding.Bindable;
 
 import com.example.tlanguage.BR;
 import com.example.tlanguage.R;
-import com.example.tlanguage.app_manager.AppConstance;
+import com.example.tlanguage.app_constant.AppConstance;
 
 public class FooterViewModel extends AbstractViewModel {
 

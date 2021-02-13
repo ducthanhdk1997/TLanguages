@@ -1,11 +1,9 @@
 package com.example.tlanguage.view.fragment;
 
-import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 
-import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
@@ -15,17 +13,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.Button;
-import android.widget.EditText;
 
 import com.example.tlanguage.R;
 import com.example.tlanguage.app_manager.ApplicationManager;
+import com.example.tlanguage.app_manager.DialogGroupManage;
+import com.example.tlanguage.app_manager.DialogVocabularyManage;
 import com.example.tlanguage.app_manager.PopupManage;
 import com.example.tlanguage.view.activity.SettingsActivity;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
-import com.example.tlanguage.app_manager.AppConstance;
+import com.example.tlanguage.app_constant.AppConstance;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -121,41 +118,12 @@ public class HeaderFragment extends Fragment {
                 popupManage.createPopup(view, AppConstance.START_MAIN_ACTIVITY);
                 break;
             case AppConstance.START_GROUP_ACTIVITY:
-                final Dialog groupDialog = new Dialog(getContext());
-                groupDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                groupDialog.setContentView(R.layout.layout_add_group);
-                groupDialog.setCanceledOnTouchOutside(false);
-                final EditText nameGroup = groupDialog.findViewById(R.id.edit_add_name_group);
-                Button btnDoneGroup = groupDialog.findViewById(R.id.btn_add_group_done);
-                Button btnCancelGroup = groupDialog.findViewById(R.id.btn_add_group_cancel);
-                groupDialog.show();
-                btnCancelGroup.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        groupDialog.dismiss();
-                    }
-                });
-
+                DialogGroupManage dialogGroupManage = new DialogGroupManage();
+                dialogGroupManage.show(getActivity().getSupportFragmentManager(),"Dialog Group");
                 break;
             case AppConstance.START_VOCABULARY_ACTIVITY:
-                final Dialog vocabularyDialog = new Dialog(getContext());
-                vocabularyDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                vocabularyDialog.setContentView(R.layout.add_vocabulary_dialog);
-                vocabularyDialog.setCanceledOnTouchOutside(false);
-
-                final EditText editWord = vocabularyDialog.findViewById(R.id.edit_add_voc_word);
-                final EditText editMean = vocabularyDialog.findViewById(R.id.edit_add_voc_mean);
-                Button btnDone = vocabularyDialog.findViewById(R.id.btn_add_Done);
-                Button btnCancel = vocabularyDialog.findViewById(R.id.btn_add_Cancel);
-
-                btnCancel.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        vocabularyDialog.dismiss();
-                    }
-                });
-                vocabularyDialog.show();
-                break;
+                DialogVocabularyManage dialogVocabularyManage = new DialogVocabularyManage();
+                dialogVocabularyManage.show(getActivity().getSupportFragmentManager(), "Dialog Vocabulary");
         }
     }
 
