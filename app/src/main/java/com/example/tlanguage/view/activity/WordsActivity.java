@@ -13,17 +13,20 @@ import android.view.View;
 
 import com.example.tlanguage.R;
 import com.example.tlanguage.app_constant.AppConstance;
+import com.example.tlanguage.app_manager.DialogVocabularyManage;
 import com.example.tlanguage.databinding.ActivityWordsBinding;
 import com.example.tlanguage.view.fragment.FooterFragment;
 import com.example.tlanguage.view.fragment.HeaderFragment;
 import com.example.tlanguage.view.fragment.ListWordsFragment;
 import com.example.tlanguage.viewmodel.WordsActivityViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class WordsActivity extends AppCompatActivity {
     private WordsActivityViewModel mViewModel;
     private ActivityWordsBinding mBinding;
     private Fragment listWordFragment, mFooterFragment, mHeaderFragment;
     private FragmentManager mFragmentManager;
+    private FloatingActionButton floatingActionButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,14 @@ public class WordsActivity extends AppCompatActivity {
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_words);
         mViewModel = new WordsActivityViewModel();
         mBinding.setViewModel(mViewModel);
+        floatingActionButton = mBinding.fabVocabulary;
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogVocabularyManage dialogVocabularyManage = new DialogVocabularyManage();
+                dialogVocabularyManage.show(getSupportFragmentManager(), "New Vocabulary");
+            }
+        });
 
         onInitFragment();
         onAttachFragment();

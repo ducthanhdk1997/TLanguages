@@ -23,14 +23,17 @@ import com.example.tlanguage.view.fragment.FooterFragment;
 import com.example.tlanguage.view.fragment.HeaderFragment;
 import com.example.tlanguage.view.fragment.ListGroupFragment;
 import com.example.tlanguage.viewmodel.GroupLanguageViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class GroupLanguageActivity extends AppCompatActivity implements DialogGroupManage.DialogGroupListener {
     private Fragment mHeaderFragment, mContentFragment, mFooterFragment;
     private FragmentManager mFaFragmentManager;
-    Bundle mBundle;
+    private Bundle mBundle;
     public String REQUEST_TITLE;
     private ActivityGroupLanguageBinding mBinding;
     private GroupLanguageViewModel mGroupViewModel;
+    private FloatingActionButton floatingActionButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,14 @@ public class GroupLanguageActivity extends AppCompatActivity implements DialogGr
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_group_language);
         mGroupViewModel = new GroupLanguageViewModel();
         mBinding.setViewModel(mGroupViewModel);
+        floatingActionButton = mBinding.fabGroup;
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogGroupManage dialogGroupManage = new DialogGroupManage();
+                dialogGroupManage.show(getSupportFragmentManager(),"New Group");
+            }
+        });
 
         mBundle = getIntent().getExtras();
         assert mBundle != null;
